@@ -1,13 +1,36 @@
+* {
+  text-align: left;
+}
+html,
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+input[type="number"] {
+  max-width: 190px !important;
+}
+
+.ellipsis {
+  color: #fff;
+  height: 18px;
+  margin: 0 5px 0 5px;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: 260px;
+  display: block; /* Change it as per your requirement. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
