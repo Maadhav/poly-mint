@@ -1,70 +1,152 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Logo](https://user-images.githubusercontent.com/21285859/174494354-0fd25a5c-4de8-4043-8086-49bdc199bab3.png)
 
-## Available Scripts
+# PolyMint
 
-In the project directory, you can run:
+> PolyMint is a dapp (decentralized application) which allows users to deploy and mint non-fungible tokens (NFTs) on the Polygon blockchain.
+## Features
 
-### `npm start`
+- Mint both ERC 721 and ERC 1155 NFTs
+- Create NFT Collections
+- Use an existing PolyMint NFT Contract to add NFTs to an existing Collection
+- IPFS Stroge (image, metadata, etc)
+- On-chain contract deployment system
+- View all of your NFTs on the Polygon Network (Using the Covalant API)
+- Login with Unstoppable Domains or MetaMask
+- Simple and user-friendly user interface
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Demo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Live Website (https://polymint.netlify.app/)
 
-### `npm run build`
+Youtube Video Demo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[![Youtube Video](https://img.youtube.com/vi/iD_HzwIKrAo/0.jpg)](https://www.youtube.com/watch?v=iD_HzwIKrAo)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## FAQ
+#### How is this project different from just a NFT Marketplace?
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+PolyMint is not a NFT Marketplace, using PolyMint you can create and deploy your own NFT Smart Contracts. You can then use those contracts to deploy any new NFTs you like.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To explain it even more, basically PolyMint allows a non tech guy to deploy their own NFT Collections.
+No need to use Truffle, Hardhat or any other EVM deplyment tools. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### How does it work?
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+An internal function of the Smart Contract for deploying a new ERC-721 Contract.
 
-## Learn More
+```solidity
+function _mint721(
+        string memory name,
+        string memory symbol,
+        string memory tokenURI
+    ) internal {
+        PolyMintERC721 contract_ = new PolyMintERC721(name, symbol);
+        address erc721Address = address(contract_);
+        contract_.mint(msg.sender, tokenURI);
+        contracts[erc721Address] = PolyMint(erc721Address, 721, name, symbol);
+        addresses.push(erc721Address);
+    }
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Tech Stack
 
-### Code Splitting
+**Client:** React, React Router, Semantic-UI
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Server:** Truffle, IPFS, Covalant API
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## Roadmap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- [x] Custom ERC-721 & ERC-1155 minting
+- [x] IPFS metadata storage
+- [ ] A more better UI/UX
+- [ ] Zero minting fees using meta-transaction
+- [ ] Account Access Management
+- [ ] List NFTs on Opensea
+- [ ] Security Enhancements
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+See the [open issues][github-issues] for a full list of proposed features (and known issues).
 
-### Deployment
+## Run Locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Clone the project
 
-### `npm run build` fails to minify
+```bash
+  git clone https://github.com/Maadhav/poly-mint
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Go to the project directory
+
+```bash
+  cd poly-mint
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`REACT_APP_CLIENT_ID`
+
+`REACT_APP_REDIRECT_URI`
+
+`REACT_APP_IPFS_API_KEY`
+
+`REACT_APP_COVALENT_API_KEY`
+
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch
+   ```sh
+   git checkout -b feature/AmazingFeature
+   ```
+3. Commit your Changes 
+    ```sh
+    git commit -m 'Add some AmazingFeature'
+    ```
+4. Push to the Branch 
+   ```sh
+    git push origin feature/AmazingFeature
+    ```
+6. Open a Pull Request
+
+## License
+
+Distributed under the MIT License. See `LICENSE.md` for more information.
+    
+## Feedback & Contact
+
+If you have any feedback or contact, please reach out to us at maadhav2001@gmail.com
+
+
+## Authors
+
+- [@Maadhav](https://www.github.com/Maadhav)
+
