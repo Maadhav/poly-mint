@@ -37,6 +37,8 @@ No need to use Truffle, Hardhat or any other EVM deplyment tools.
 
 #### How does it work?
 
+![PolyMint Working](https://user-images.githubusercontent.com/21285859/174513874-7640d577-6ead-44fa-8e6a-8e77bb8c403d.png)
+
 An internal function of the Smart Contract for deploying a new ERC-721 Contract.
 
 ```solidity
